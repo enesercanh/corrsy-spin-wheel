@@ -108,7 +108,7 @@
                 alert("Please enter grade and phone number");
                 return;
             }
-            fetch("YOUR_GOOGLE_APPS_SCRIPT_URL", {
+            fetch("https://script.google.com/macros/s/AKfycbwkSvuzpjW3UAk6_odALuizXtH1jfQj_mhKBv5cpfm0yzrDMFzrQ7O2bToj9OhvJjcmIA/exec", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ grade, phone, option })
