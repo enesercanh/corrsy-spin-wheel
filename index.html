@@ -108,7 +108,24 @@
                 alert("Please enter grade and phone number");
                 return;
             }
-            fetch("https://script.google.com/macros/s/AKfycbyRbGUYtnO-JrYeyYdkk2ksa-g5VzfRS5bnXwMIrNYFFrghaSk0t3jY-Q2-zAZCEbAV2w/exec", {
+            fetch("function saveResult(option) {
+    const grade = document.getElementById("grade").value;
+    const phone = document.getElementById("phone").value;
+    if (!grade || !phone) {
+        alert("Please enter grade and phone number");
+        return;
+    }
+    fetch("https://script.google.com/macros/s/AKfycbyRbGUYtnO-JrYeyYdkk2ksa-g5VzfRS5bnXwMIrNYFFrghaSk0t3jY-Q2-zAZCEbAV2w/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ grade, phone, option })
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log("Saved:", data);
+    })
+    .catch(error => console.error("Error:", error));
+}", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ grade, phone, option })
