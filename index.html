@@ -105,8 +105,7 @@
             const grade = document.getElementById("grade").value;
             const phone = document.getElementById("phone").value.trim();
             
-            // Validate phone number
-            if (!/^\d+$/.test(phone)) {
+            if (!/^[0-9]+$/.test(phone)) {
                 alert("Please enter a valid phone number");
                 return;
             }
@@ -116,7 +115,7 @@
                 return;
             }
 
-            fetch("https://script.google.com/macros/s/AKfycbw33579fJpW8ZamXiv_DfbkqhEQWQQriRz4Xloz1kg3QR1m4aSQL03crMkxnODw4_M9WA/exec", {
+            fetch("https://script.google.com/macros/s/AKfycbyZFNM9qL-qbJ6QeksD4dkkihegxeylP6UYw82ct722mBPsDMH2pGchxm7zUW0r-4NmiQ/exec", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ grade, phone, option })
