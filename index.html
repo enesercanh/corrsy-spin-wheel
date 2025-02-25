@@ -57,8 +57,9 @@
                 ctx.translate(200, 200);
                 ctx.rotate(arc * i + arc / 2);
                 ctx.fillStyle = "white";
-                ctx.font = "bold 16px Arial";
-                ctx.fillText(options[i], 90, 10);
+                ctx.font = "bold 14px Arial";
+                ctx.textAlign = "center";
+                ctx.fillText(options[i], 120, 5);
                 ctx.restore();
             }
         }
@@ -103,35 +104,29 @@
 
         function saveResult(option) {
             const grade = document.getElementById("grade").value;
-            const phone = document.getElementById("phone").value;
+            const phone = document.getElementById("phone").value.trim();
+            
+            // Validate phone number
+            if (!/^\d+$/.test(phone)) {
+                alert("Please enter a valid phone number");
+                return;
+            }
+
             if (!grade || !phone) {
                 alert("Please enter grade and phone number");
                 return;
             }
-            fetch("function saveResult(option) {
-    const grade = document.getElementById("grade").value;
-    const phone = document.getElementById("phone").value;
-    if (!grade || !phone) {
-        alert("Please enter grade and phone number");
-        return;
-    }
-    fetch("https://script.google.com/macros/s/AKfycbyRbGUYtnO-JrYeyYdkk2ksa-g5VzfRS5bnXwMIrNYFFrghaSk0t3jY-Q2-zAZCEbAV2w/exec", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ grade, phone, option })
-    })
-    .then(response => response.text())
-    .then(data => {
-        console.log("Saved:", data);
-    })
-    .catch(error => console.error("Error:", error));
-}", {
+
+            fetch("https://script.google.com/macros/s/AKfycbyRbGUYtnO-JrYeyYdkk2ksa-g5VzfRS5bnXwMIrNYFFrghaSk0t3jY-Q2-zAZCEbAV2w/exec", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ grade, phone, option })
-            }).then(response => response.text()).then(data => {
+            })
+            .then(response => response.text())
+            .then(data => {
                 console.log("Saved:", data);
-            }).catch(error => console.error("Error:", error));
+            })
+            .catch(error => console.error("Error:", error));
         }
     </script>
 </body>
